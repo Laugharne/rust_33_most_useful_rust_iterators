@@ -1,8 +1,50 @@
+
+
+
+
 # 33 Most Useful Rust Iterator Methods
 
 > **Source:** [33 Most Useful Rust Iterator Methods](https://freedium.cfd/https://medium.com/@jannden/33-most-useful-rust-iterator-methods-b56eb608de76)
 
 Rust is very keen on collections. That's why it offers a useful set of methods for iterations. Maybe you haven't even heard of some of them, yet they are so elegant and powerful.
+
+
+- [A What's up with all the iter and into_iter](#a-whats-up-with-all-the-iter-and-into_iter)
+- [B Lazy Evaluation of Iterators](#b-lazy-evaluation-of-iterators)
+	- [map|x| fx](#mapx-fx)
+	- [filter|x| conditionx](#filterx-conditionx)
+	- [filter_map|x| fx](#filter_mapx-fx)
+	- [find|x| conditionx](#findx-conditionx)
+	- [any|x| conditionx](#anyx-conditionx)
+	- [all|x| conditionx](#allx-conditionx)
+	- [foldinitial, |acc, x| operationacc, x](#foldinitial-acc-x-operationacc-x)
+	- [skipn](#skipn)
+	- [taken](#taken)
+	- [take_whilepredicate](#take_whilepredicate)
+	- [partition|x| conditionx](#partitionx-conditionx)
+	- [enumerate](#enumerate)
+	- [zip](#zip)
+	- [chunksn](#chunksn)
+	- [flat_map|x| fx](#flat_mapx-fx)
+	- [cloned](#cloned)
+	- [collect::<Vec<_>>](#collectvec_)
+	- [extenditer](#extenditer)
+	- [chainiter](#chainiter)
+	- [max](#max)
+	- [min](#min)
+	- [count](#count)
+	- [sum](#sum)
+	- [product](#product)
+	- [nthn](#nthn)
+	- [next](#next)
+	- [last](#last)
+	- [cycle](#cycle)
+	- [step_byn](#step_byn)
+	- [rev](#rev)
+	- [peekable](#peekable)
+	- [by_ref](#by_ref)
+	- [is_sorted](#is_sorted)
+
 
 Here is a visual guide to the ten most important methods. I explain these 10 (and many more) in this article.
 
@@ -12,7 +54,7 @@ _Rust Iterator Methods Visually — an infographic by the [author](https://www.l
 
 Just before we start, I want to clarify two topics related to iterators.
 
-#### A) What's up with all the `iter` and `into_iter
+## A) What's up with all the `iter` and `into_iter
 
 In the upcoming examples, you will surely notice an extensive use of `iter` and `into_iter`. They turn a collection into a sequence of values that we can "loop over".
 
@@ -21,7 +63,7 @@ The choice between them depends on how you want to interact with the data:
 - **`iter()`** borrows elements from the collection, allowing you to traverse them without taking ownership. This is useful when you don't want to modify or consume the collection, leaving it available for further use.
 - **`into_iter()`**, on the other hand, consumes the collection, taking ownership of its elements. Once a collection is consumed, it can no longer be used. This makes sense when you want to transform or move the data out of the collection.
 
-#### B) Lazy Evaluation of Iterators
+## B) Lazy Evaluation of Iterators
 
 An important feature of iterators in Rust is that they are **lazy by default**. This means methods like `.map()` and `.filter()` don't immediately execute their operations. Instead, they create a chain of iterator transformations that only run when the iterator is **consumed**—typically through methods like `.collect()`, `.sum()`, or `.count()`.
 
